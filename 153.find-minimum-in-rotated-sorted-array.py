@@ -15,13 +15,11 @@ class Solution:
             mid = (l + r) // 2
             # if mid < first, meaning the max point is between l and mid
             if nums[mid] > nums[mid + 1]:
-                print(nums[mid], nums[mid + 1])
                 return nums[mid + 1]
             elif nums[mid] < nums[l]:
                 r = mid
             else:
                 l = mid + 1
-            print(l, r, mid)
 
         return nums[0]
 
