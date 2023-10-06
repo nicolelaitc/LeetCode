@@ -31,9 +31,6 @@ class TimeMap:
             else:
                 r = mid - 1
 
-        print(
-            f"left: {r}, right: {l}, timestamp: {timestamp}, key: {key}, value: {self.hash[key][1][r]}"
-        )
         return self.hash[key][1][r] if r < timestamp and r >= 0 else ""
 
 

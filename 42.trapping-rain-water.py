@@ -28,8 +28,6 @@ class Solution:
             tmp = min(height[r], height[l])
             #tmp = min(height[r], height[l])*(r-l-1) - sum(height[l+1:r])
             res += sum(tmp - n for n in height[l+1:r] if tmp > n)
-            print(
-                f"1: {l}, r: {r}, res: {res}, slice: {height[l+1:r]}")
             l = r
             r = l + 2
 

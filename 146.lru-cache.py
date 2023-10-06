@@ -64,7 +64,6 @@ class LRUCache:
             elements.append(temp)
             current = current.next
         linked_list_string = " -> ".join(elements)
-        print(linked_list_string + " -> None")
 
     def move_to_top(self, node):
         if node.prev:

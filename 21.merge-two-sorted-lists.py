@@ -46,8 +46,6 @@ class Solution:
         if current2:
             tail.next = current2
 
-        print(head, tail, current1, current2)
-
         return head
 
 

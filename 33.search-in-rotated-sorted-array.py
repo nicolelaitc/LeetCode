@@ -17,7 +17,6 @@ class Solution:
 
         while l <= r:
             mid = (l + r) // 2
-            print(f"before // left: {l}, right: {r}, mid: {mid}")
             if nums[mid] == target:
                 return mid
 
@@ -37,8 +36,6 @@ class Solution:
                     l = mid + 1
                 else:
                     r = mid - 1
-
-            print(f"after // left: {l}, right: {r}, mid: {mid}")
 
         return -1
 

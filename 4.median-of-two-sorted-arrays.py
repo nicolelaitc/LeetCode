@@ -24,10 +24,6 @@ class Solution:
             Bleft = b[j] if j >= 0 else float("-inf")
             Bright = b[j + 1] if (j + 1) < len(b) else float("inf")
 
-            print(
-                f"i: {i}, j: {j}, ALeft: {Aleft}, Aright: {Aright}, Bleft: {Bleft}, Bright: {Bright}, l: {l}, r: {r}"
-            )
-
             if Aleft <= Bright and Bleft <= Aright:
                 if (len(a) + len(b)) % 2 == 0:
                     return (max(Aleft, Bleft) + min(Aright, Bright)) / 2
