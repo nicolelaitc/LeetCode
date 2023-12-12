@@ -8,23 +8,27 @@
 # @lc code=start
 class Solution:
     def intToRoman(self, num: int) -> str:
-        roman = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
-        res, count = "", 1
-        while num > 0:
-            remainder = num % 10
-            if remainder < 4:
-                res = roman[count] * remainder + res
-            elif remainder == 4:
-                res = roman[count] + roman[count * 5] + res
-            elif remainder == 5:
-                res = roman[count * 5] + res
-            elif remainder < 9:
-                res = roman[count * 5] + roman[count] * (remainder - 5) + res
-            elif remainder == 9:
-                res = roman[count] + roman[count * 10] + res
+        roman = {
+            1000: "M",
+            900: "CM",
+            500: "D",
+            400: "CD",
+            100: "C",
+            90: "XC",
+            50: "L",
+            40: "XL",
+            10: "X",
+            9: "IX",
+            5: "V",
+            4: "IV",
+            1: "I",
+        }
 
-            count *= 10
-            num //= 10
+        res = ""
+        for key in roman:
+            while num >= key:
+                res += roman[key]
+                num -= key
         return res
 
 
