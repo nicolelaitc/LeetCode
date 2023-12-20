@@ -8,14 +8,17 @@
 # @lc code=start
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        ans = list()
-        for start, end in sorted(intervals):
-            if ans and start <= ans[-1][1]:
-                ans[-1][1] = max(end, ans[-1][1])
+        intervals.sort()
+        i = 1
+        while i < len(intervals):
+            start, end = intervals[i]
+            if start <= intervals[i - 1][1]:
+                intervals[i][0] = intervals[i - 1][0]
+                intervals[i][1] = max(intervals[i - 1][1], end)
+                intervals.pop(i - 1)
             else:
-                ans.append([start, end])
-
-        return ans
+                i += 1
+        return intervals
 
 
 # @lc code=end
