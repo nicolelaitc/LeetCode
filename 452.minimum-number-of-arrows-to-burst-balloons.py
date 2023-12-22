@@ -9,29 +9,11 @@
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
         # find the overlapping area?
-        points.sort()
-        arrow = []
-        for i in range(len(points)):
-            if arrow:
-                overlap = self.find_overlap(arrow[-1], points[i])
-                if overlap:
-                    arrow[-1] = overlap
-                else:
-                    arrow.append(points[i])
-            else:
-                arrow.append(points[i])
+        points.sort(key=lambda x: x[1])
+        tally, bow = 1, points[0][1]
+        for start, end in points:
+            if start > bow:
+                tally += 1
+                bow = end
 
-        print(arrow)
-        return len(arrow)
-
-    def find_overlap(self, interval1, interval2):
-        # Find the maximum of the start points
-        start = max(interval1[0], interval2[0])
-        # Find the minimum of the end points
-        end = min(interval1[1], interval2[1])
-
-        # Check if there is an overlap
-        if start <= end:
-            return [start, end]
-        else:
-            return []  # No overlap
+        return tally
