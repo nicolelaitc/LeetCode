@@ -14,20 +14,15 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        return self.dfs(root, 0)
+
+    def dfs(self, root, path):
         if not root:
             return 0
-        num = 0
-        stack = [[root]]
-        while stack:
-            nodeList = stack.pop()
-            if not nodeList[-1].left and not nodeList[-1].right:
-                num += int("".join([str(i.val) for i in nodeList]))
-            if nodeList[-1].left:
-                stack.append(nodeList + [nodeList[-1].left])
-            if nodeList[-1].right:
-                stack.append(nodeList + [nodeList[-1].right])
-
-        return num
+        path = path * 10 + root.val
+        if not root.left and not root.right:
+            return path
+        return self.dfs(root.left, path) + self.dfs(root.right, path)
 
 
 # @lc code=end
