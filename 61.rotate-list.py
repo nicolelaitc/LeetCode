@@ -16,21 +16,17 @@ class Solution:
         if not head or not head.next or k == 0:
             return head
         length = 1
-        curr, end = head, None
+        curr, end, newHead = head, None, None
         while curr:
             if not curr.next:
                 end = curr
                 break
             curr = curr.next
-
             length += 1
 
         if k % length == 0:
             return head
-        curr, newHead = head, None
-
-        # remainder : in the middle
-        # remainder : in the end (rotate k - 1)
+        curr = head
 
         rotation = length - (k % length)
         while rotation > 0:
