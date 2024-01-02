@@ -20,30 +20,16 @@ class Solution:
         if root is None:
             return None
 
-        # pathfinding?
-        stack = [[root]]
-        path = []
-        while stack:
-            nodeList = stack.pop()
-            if nodeList[-1] == p or nodeList[-1] == q:
-                path.append(nodeList)
-            if nodeList[-1].left:
-                stack.append(nodeList + [nodeList[-1].left])
-            if nodeList[-1].right:
-                stack.append(nodeList + [nodeList[-1].right])
+        if root == p or root == q:
+            return root
 
-        print(len(path))
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
 
-        # find the intersection
-        common = set(path[0]).intersection(set(path[1]))
+        if left and right:
+            return root
 
-        for i in range(-1, -max(len(path[0]), len(path[1])) - 1, -1):
-            if path[0][i] in common:
-                return path[0][i]
-            elif path[1][i] in common:
-                return path[1][i]
-
-        return root
+        return left if left else right
 
 
 # @lc code=end
