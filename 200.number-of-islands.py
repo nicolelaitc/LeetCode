@@ -8,30 +8,23 @@
 # @lc code=start
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        visited, stack = set(), list()
         island = 0
-
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if (i, j) in visited:
-                    continue
-
                 if grid[i][j] == "1":
                     island += 1
-                    stack.append((i, j))
-                    while stack:
-                        i, j = stack.pop()
-                        for x in range(i - 1, i + 2):
-                            for y in range(j - 1, j + 2):
-                                if x == i or y == j:
-                                    if 0 <= x < len(grid) and 0 <= y < len(grid[0]):
-                                        if (x, y) not in visited:
-                                            visited.add((x, y))
-                                            if grid[x][y] == "1":
-                                                stack.append((x, y))
-                visited.add((i, j))
+                    self.dfs(grid, i, j)
 
         return island
+
+    def dfs(self, grid, i, j):
+        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == "0":
+            return
+        grid[i][j] = "0"
+        self.dfs(grid, i + 1, j)
+        self.dfs(grid, i - 1, j)
+        self.dfs(grid, i, j + 1)
+        self.dfs(grid, i, j - 1)
 
 
 # @lc code=end
