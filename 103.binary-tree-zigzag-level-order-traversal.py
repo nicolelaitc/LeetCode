@@ -30,7 +30,7 @@ class Solution:
             if l:
                 stack.append(l)
             p += 1
-        print(stack)
+
         ans = []
         while stack:
             l = stack.pop(0)

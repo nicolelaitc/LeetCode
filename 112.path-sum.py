@@ -17,7 +17,7 @@ class Solution:
         if root:
             stack = [root]
             while stack:
-                node = stack.pop()
+                node = stack.pop(-1)
                 if node.val == targetSum and not node.left and not node.right:
                     return True
                 if node.left:
