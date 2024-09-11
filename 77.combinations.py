@@ -8,14 +8,18 @@
 # @lc code=start
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        if n == k:
-            return [[x for x in range(1, n + 1)]]
-        ans = [[x] for x in range(1, n - k + 2)]
-        while len(ans[0]) < k and ans[0][0] <= n:
-            l = ans.pop(0)
-            if l[-1] < n:
-                for x in range(l[-1] + 1, n + 1):
-                    ans.append(l + [x])
+
+        def backtracking(list: list[int], n: int):
+            if list[-1] < n and (n - list[-1]) > k - len(list):
+                return list[:-1] + [list[-1] + 1]
+            else:
+                l = backtracking(list[:-1], n)
+                return l + [l[-1] + 1]
+
+        ans = [[x for x in range(1, k + 1)]]
+        while ans[-1][0] < n - k + 1:
+            ans.append(backtracking(ans[-1], n))
+
         return ans
 
 
